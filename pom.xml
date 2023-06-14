@@ -26,6 +26,9 @@
 			api-catalog
 		</module>
 		<module>
+			api-serie
+		</module>
+		<module>
 			api-gateway
 		</module>
 		<module>

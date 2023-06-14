@@ -22,9 +22,9 @@ services:
       #    MONGO_INITDB_DATABASE: 'inscription-dev-mongo'
       #   MONGO_INITDB_ROOT_USERNAME: 'usr-customer-mongo'
       #  MONGO_INITDB_ROOT_PASSWORD: 'pwd-inscription-mongo' TODO: 1. cambiarle el nombre a la bdd etc
-      - MONGODB_USERNAME=usr-catalog-mongo
-      - MONGODB_PASSWORD=pwd-catalog-mongo
-      - MONGODB_DATABASE=catalog-dev-mongo
+      - MONGODB_USERNAME=usr-movie-mongo
+      - MONGODB_PASSWORD=pwd-movie-mongo
+      - MONGODB_DATABASE=movie-dev-mongo
     ports:
       - 27017:27017
   zipkin-server-container:
