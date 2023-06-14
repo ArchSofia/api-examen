@@ -2,6 +2,7 @@ package com.dh.catalog.controller;
 
 import com.dh.catalog.client.MovieServiceClient;
 
+import com.dh.catalog.client.SerieServiceClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,9 +16,11 @@ import java.util.List;
 public class CatalogController {
 
 	private final MovieServiceClient movieServiceClient;
+	private final SerieServiceClient serieServiceClient;
+	public CatalogController(MovieServiceClient movieServiceClient, SerieServiceClient  serieServiceClient) {
 
-	public CatalogController(MovieServiceClient movieServiceClient) {
 		this.movieServiceClient = movieServiceClient;
+		this.serieServiceClient = serieServiceClient;
 	}
 
 	@GetMapping("/{genre}")
