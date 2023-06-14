@@ -14,3 +14,30 @@ services:
       # Opens port 3306 on the container
       - '5432'
       # Where our data will be persisted
+  mongo-container:
+    image: 'bitnami/mongodb:4.2.8'
+    container_name: mongo-container
+    restart: on-failure
+    environment:
+      #    MONGO_INITDB_DATABASE: 'inscription-dev-mongo'
+      #   MONGO_INITDB_ROOT_USERNAME: 'usr-customer-mongo'
+      #  MONGO_INITDB_ROOT_PASSWORD: 'pwd-inscription-mongo' TODO: 1. cambiarle el nombre a la bdd etc
+      - MONGODB_USERNAME=usr-catalog-mongo
+      - MONGODB_PASSWORD=pwd-catalog-mongo
+      - MONGODB_DATABASE=catalog-dev-mongo
+    ports:
+      - 27017:27017
+  zipkin-server-container:
+    image: openzipkin/zipkin-slim
+    container_name: zipkin-server-container
+    environment:
+      - STORAGE_TYPE=mem
+    ports:
+      - "9411:9411"
+    expose:
+      - 9411
+    depends_on:
+      - storage-aux-container
+  storage-aux-container:
+    image: busybox:1.31.0
+    container_name: storage-aux-container
