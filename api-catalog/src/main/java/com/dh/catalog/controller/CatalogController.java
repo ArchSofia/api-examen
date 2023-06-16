@@ -41,4 +41,6 @@ public class CatalogController {
 
 		return ResponseEntity.ok(genreItems);
 	}
+
+	//TODO: ACA VAS A HACER DOS POST, UNO DE PELICULAS YU OPTRO DE SERIES! usando el feign que armaste
 }
