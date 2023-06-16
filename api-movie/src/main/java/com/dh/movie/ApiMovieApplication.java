@@ -2,6 +2,7 @@ package com.dh.movie;
 
 import com.dh.movie.model.Movie;
 import com.dh.movie.repository.MovieRepository;
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,6 +14,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EnableJpaRepositories
 @EnableFeignClients
+@EnableRabbit
+
 public class ApiMovieApplication {
 
     public static void main(String[] args) {
