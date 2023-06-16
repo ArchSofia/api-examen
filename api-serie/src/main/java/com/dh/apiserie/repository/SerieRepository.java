@@ -13,4 +13,6 @@ public interface SerieRepository extends MongoRepository<Serie, String> {
     @Query("{'genre': ?0}")
     List<Serie> findAllByGenre(String genre);
 
+
+
 }

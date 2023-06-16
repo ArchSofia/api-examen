@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -17,15 +18,27 @@ public class CatalogController {
 
 	private final MovieServiceClient movieServiceClient;
 	private final SerieServiceClient serieServiceClient;
-	public CatalogController(MovieServiceClient movieServiceClient, SerieServiceClient  serieServiceClient) {
+
+	public CatalogController(MovieServiceClient movieServiceClient, SerieServiceClient serieServiceClient) {
 
 		this.movieServiceClient = movieServiceClient;
 		this.serieServiceClient = serieServiceClient;
 	}
 
-	@GetMapping("/{genre}")
+/*	@GetMapping("/{genre}")
 	ResponseEntity<List<MovieServiceClient.MovieDto>> getGenre(@PathVariable String genre) {
-		return ResponseEntity.ok(movieServiceClient.getMovieByGenre(genre));
-	}
+		return ResponseEntity.ok(
+				movieServiceClient.getMovieByGenre(genre)
+				serieServiceClient.getSerieByGenre(genre));
+	}*/
 
+	@GetMapping("/{genre}")
+	ResponseEntity<List<Object>> getGenre(@PathVariable String genre) {
+		List<Object> genreItems = new ArrayList<>();
+
+		genreItems.addAll(movieServiceClient.getMovieByGenre(genre));
+		genreItems.addAll(serieServiceClient.getSerieByGenre(genre));
+
+		return ResponseEntity.ok(genreItems);
+	}
 }
