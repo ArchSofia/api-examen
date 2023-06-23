@@ -24,7 +24,7 @@ public class SerieController {
         return ResponseEntity.ok(serieService.getSeriesBygGenre(genre));
     }
 
-    @PostMapping
+    @PostMapping("/save")
     void createNewSerie(@RequestBody Serie serie) {
          serieService.createSerie(serie);
     }
