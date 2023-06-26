@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-@EnableMongoRepositories
 public interface SerieRepository extends MongoRepository<Serie, String> {
 
     @Query("{'genre': ?0}")
