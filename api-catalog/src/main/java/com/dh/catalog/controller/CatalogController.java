@@ -31,7 +31,6 @@ public class CatalogController {
 	@GetMapping("/{genre}")
 	ResponseEntity<List<Object>> getGenre(@PathVariable String genre) {
 		List<Object> genreItems = new ArrayList<>();
-// TODO: ACA ME PEDÍA QUE SEA PUBLIC CAATALOG SERVICE, QUE HAGO? PORQUE LO ESTÁ LLAMANDO
 		genreItems.addAll(catalogService.getMovieByGenre(genre));
 		genreItems.addAll(catalogService.getSerieByGenre(genre));
 

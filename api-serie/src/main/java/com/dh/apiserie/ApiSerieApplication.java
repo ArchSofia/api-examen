@@ -34,13 +34,13 @@ public class ApiSerieApplication {
 
 			//Serie A terror
 			List<Chapter> serieASeasonAChapters = List.of(
-					new Chapter("Chapter A", 1, baseUrl + "/terror/1/season/1/chapter/1"),
-					new Chapter("Chapter B", 2, baseUrl + "/terror/1/season/1/chapter/2")
+					new Chapter("Chapter A", 1, baseUrl + "/Terror/1/season/1/chapter/1"),
+					new Chapter("Chapter B", 2, baseUrl + "/Terror/1/season/1/chapter/2")
 			);
 
 			List<Chapter> serieASeasonBChapters = List.of(
-					new Chapter("Chapter A", 1, baseUrl + "/terror/1/season/2/chapter/1"),
-					new Chapter("Chapter B", 2, baseUrl + "/terror/1/season/2/chapter/2")
+					new Chapter("Chapter A", 1, baseUrl + "/Terror/1/season/2/chapter/1"),
+					new Chapter("Chapter B", 2, baseUrl + "/Terror/1/season/2/chapter/2")
 			);
 
 			List<Season> serieASeasons = List.of(
@@ -64,8 +64,8 @@ public class ApiSerieApplication {
 					new Season(2, serieBSeasonBChapters)
 			);
 
-			Serie serieA = new Serie( UUID.randomUUID().toString(),"Serie A", "terror", serieASeasons);
-			Serie serieB = new Serie( UUID.randomUUID().toString(),"Serie B", "comedia", serieBSeasons);
+			Serie serieA = new Serie( UUID.randomUUID().toString(),"Serie A", "Terror", serieASeasons);
+			Serie serieB = new Serie( UUID.randomUUID().toString(),"Serie B", "Comedia", serieBSeasons);
 			repository.save(serieA);
 			repository.save(serieB);
 

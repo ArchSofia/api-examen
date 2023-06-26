@@ -6,12 +6,14 @@ import com.dh.catalog.model.movie.Movie;
 import com.dh.catalog.model.serie.Serie;
 import com.dh.catalog.repository.MovieRepository;
 import com.dh.catalog.repository.SerieRepository;
+import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -38,13 +40,16 @@ public class CatalogService {
     }
 
     //TODO: PARA PROBAR PRIMERO HACER UN FALLBACK CON UN MENSAJE PARA VER QUE FUNCIONE
-    public List<Movie> findMovieFallBack(String genre) {
-        return movieRepository.findAllByGenre(genre);
+    // Fallback method for getMovieByGenre
+    public List<MovieServiceClient.MovieDto> findMovieFallBack(String genre, Throwable throwable) {
+        // Handle the fallback logic here
+        // You can return a default list or perform any other fallback action
+        return Collections.emptyList();
     }
-
     public MovieServiceClient.MovieDto createMovie(MovieServiceClient.MovieDto movieDto) {
         return movieServiceClient.saveMovie(movieDto);
     }
+
 
 
     /*SERIES */
@@ -54,9 +59,11 @@ public class CatalogService {
         return serieServiceClient.getSerieByGenre(genre);
     }
 
-    public List<Serie> findSeriesFallBack(String genre) {
-        return serieRepository.findAllByGenre(genre);
+    // Fallback method for getSerieByGenre
+    public List<SerieServiceClient.SerieDto> findSeriesFallBack(String genre, Throwable throwable)  {
+        return Collections.emptyList();
     }
+
 
     public SerieServiceClient.SerieDto createSeries(SerieServiceClient.SerieDto serieDto) {
         return serieServiceClient.saveSerie(serieDto);
