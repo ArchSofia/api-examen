@@ -16,7 +16,6 @@ import java.util.List;
 public class CatalogController {
 
 	private final CatalogService catalogService;
-
 	public CatalogController(CatalogService catalogService) {
 		this.catalogService = catalogService;
 	}
@@ -27,7 +26,6 @@ public class CatalogController {
 				movieServiceClient.getMovieByGenre(genre)
 				serieServiceClient.getSerieByGenre(genre));
 	}*/
-
 	@GetMapping("/{genre}")
 	ResponseEntity<List<Object>> getGenre(@PathVariable String genre) {
 		List<Object> genreItems = new ArrayList<>();
@@ -45,7 +43,7 @@ public class CatalogController {
 
 	@PostMapping("/saveSeries")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public SerieServiceClient.SerieDto saveSeries(@RequestBody SerieServiceClient.SerieDto serieDto) {
-		return catalogService.createSeries(serieDto);
+	public SerieServiceClient.Serie saveSeries(@RequestBody SerieServiceClient.Serie serie) {
+		return catalogService.createSeries(serie);
 	}
 }

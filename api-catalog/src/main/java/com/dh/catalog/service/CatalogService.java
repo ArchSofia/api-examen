@@ -39,15 +39,13 @@ public class CatalogService {
         return movieServiceClient.getMovieByGenre(genre);
     }
 
-    //TODO: PARA PROBAR PRIMERO HACER UN FALLBACK CON UN MENSAJE PARA VER QUE FUNCIONE
-    // Fallback method for getMovieByGenre
-    public List<MovieServiceClient.MovieDto> findMovieFallBack(String genre, Throwable throwable) {
+    public List<Movie> findMovieFallBack(String genre, Throwable throwable) {
         // Handle the fallback logic here
         // You can return a default list or perform any other fallback action
-        return Collections.emptyList();
+        return movieRepository.findAllByGenre(genre);
     }
-    public MovieServiceClient.MovieDto createMovie(MovieServiceClient.MovieDto movieDto) {
-        return movieServiceClient.saveMovie(movieDto);
+    public MovieServiceClient.MovieDto createMovie(MovieServiceClient.MovieDto movie) {
+        return movieServiceClient.saveMovie(movie);
     }
 
 
@@ -55,18 +53,18 @@ public class CatalogService {
     /*SERIES */
     @Retry(name = "retryFindByGenre")
     @CircuitBreaker(name = "catalogByGenre", fallbackMethod = "findSeriesFallBack")
-    public List<SerieServiceClient.SerieDto> getSerieByGenre(String genre) {
+    public List<SerieServiceClient.Serie> getSerieByGenre(String genre) {
         return serieServiceClient.getSerieByGenre(genre);
     }
 
     // Fallback method for getSerieByGenre
-    public List<SerieServiceClient.SerieDto> findSeriesFallBack(String genre, Throwable throwable)  {
-        return Collections.emptyList();
+    public List<SerieServiceClient.Serie> findSeriesFallBack(String genre, Throwable throwable)  {
+        return serieRepository.findAllByGenre(genre);
     }
 
 
-    public SerieServiceClient.SerieDto createSeries(SerieServiceClient.SerieDto serieDto) {
-        return serieServiceClient.saveSerie(serieDto);
+    public SerieServiceClient.Serie createSeries(SerieServiceClient.Serie serie) {
+        return serieServiceClient.saveSerie(serie);
     }
 
 }

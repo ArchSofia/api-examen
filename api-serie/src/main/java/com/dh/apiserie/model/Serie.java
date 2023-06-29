@@ -21,9 +21,8 @@ public class Serie {
     private String id;
     private String name;
     private String genre;
-    private List<Season> seasons = new ArrayList<>();
-
-
-
+  /*
+  private List<Season> seasons = new ArrayList<>();
+*/
 
 }

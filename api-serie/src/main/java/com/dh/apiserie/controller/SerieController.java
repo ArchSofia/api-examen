@@ -16,17 +16,12 @@ public class SerieController {
     public SerieController(SerieService serieService) {
         this.serieService = serieService;
     }
-
-
-
     @GetMapping("/{genre}")
     ResponseEntity<List<Serie>> getSerieByGenre(@PathVariable String genre){
         return ResponseEntity.ok(serieService.getSeriesBygGenre(genre));
     }
-
     @PostMapping("/save")
-    void createNewSerie(@RequestBody Serie serie) {
-         serieService.createSerie(serie);
+    void createNewSerie(@RequestBody Serie serie) { serieService.createSerie(serie);
     }
 
 }

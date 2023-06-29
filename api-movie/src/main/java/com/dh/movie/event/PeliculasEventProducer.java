@@ -8,16 +8,16 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class FinalizarCursoEventProducer {
+public class PeliculasEventProducer {
 
     private final RabbitTemplate rabbitTemplate;
 
-    public FinalizarCursoEventProducer(RabbitTemplate rabbitTemplate) {
+    public PeliculasEventProducer(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
     }
 
     public void publishFinalizarCursoEvent(Data message){
-        rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME,RabbitMQConfig.TOPIC_CURSO_FINALIZADO,message);
+        rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME,RabbitMQConfig.TOPIC_PELICULA,message);
     }
 
     @AllArgsConstructor
@@ -31,7 +31,6 @@ public class FinalizarCursoEventProducer {
 
             private String genre;
 
-            private String urlStream;
         }
 
     }

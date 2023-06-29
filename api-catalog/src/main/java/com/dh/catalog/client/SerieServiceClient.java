@@ -1,6 +1,7 @@
 package com.dh.catalog.client;
 
 import com.dh.catalog.model.serie.Season;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -18,19 +19,22 @@ import java.util.List;
 public interface SerieServiceClient {
 
 	@GetMapping("/api/v1/series/{genre}")
-	List<SerieDto> getSerieByGenre(@PathVariable (value = "genre") String genre);
+	List<Serie> getSerieByGenre(@PathVariable (value = "genre") String genre);
 
 	@PostMapping("/api/v1/series/save")
-	SerieDto saveSerie(@RequestBody SerieDto serieDto);
+	Serie saveSerie(@RequestBody Serie serieDto);
 
 	@Getter
 	@Setter
-	class SerieDto{
+	@AllArgsConstructor
+	class Serie{
 
 		private String id;
 		private String name;
 		private String genre;
-		private List<Season> seasons = new ArrayList<>();
+
 	}
-// TODO: Que pasa con chapter y season?
+/*
+ Que pasa con chapter y season? private List<Season> seasons = new ArrayList<>(); le saque esto dsps se lo agrego si funciona bien
+*/
 }

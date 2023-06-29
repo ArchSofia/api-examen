@@ -32,7 +32,7 @@ public class ApiSerieApplication {
 				return;
 			}
 
-			//Serie A terror
+		/*	//Serie A terror
 			List<Chapter> serieASeasonAChapters = List.of(
 					new Chapter("Chapter A", 1, baseUrl + "/Terror/1/season/1/chapter/1"),
 					new Chapter("Chapter B", 2, baseUrl + "/Terror/1/season/1/chapter/2")
@@ -62,10 +62,16 @@ public class ApiSerieApplication {
 			List<Season> serieBSeasons = List.of(
 					new Season(1, serieBSeasonAChapters),
 					new Season(2, serieBSeasonBChapters)
-			);
 
-			Serie serieA = new Serie( UUID.randomUUID().toString(),"Serie A", "Terror", serieASeasons);
+					Serie serieA = new Serie( UUID.randomUUID().toString(),"Serie A", "Terror", serieASeasons);
 			Serie serieB = new Serie( UUID.randomUUID().toString(),"Serie B", "Comedia", serieBSeasons);
+			repository.save(serieA);
+			repository.save(serieB);
+
+			);*/
+
+			Serie serieA = new Serie( UUID.randomUUID().toString(),"Serie A", "Terror");
+			Serie serieB = new Serie( UUID.randomUUID().toString(),"Serie B", "Comedia");
 			repository.save(serieA);
 			repository.save(serieB);
 
