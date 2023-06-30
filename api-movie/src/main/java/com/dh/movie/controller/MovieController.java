@@ -1,9 +1,8 @@
 package com.dh.movie.controller;
 
-import com.dh.movie.event.FinalizarCursoEventProducer;
+import com.dh.movie.event.PeliculasEventProducer;
 import com.dh.movie.model.Movie;
 import com.dh.movie.service.MovieService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,11 +15,11 @@ public class MovieController {
 
     private final MovieService movieService;
 
-    private final FinalizarCursoEventProducer finalizarCursoEventProducer;
+    private final PeliculasEventProducer peliculasEventProducer;
 
-    public MovieController(MovieService movieService, FinalizarCursoEventProducer finalizarCursoEventProducer) {
+    public MovieController(MovieService movieService, PeliculasEventProducer finalizarCursoEventProducer) {
         this.movieService = movieService;
-        this.finalizarCursoEventProducer = finalizarCursoEventProducer;
+        this.peliculasEventProducer = finalizarCursoEventProducer;
     }
 
     @GetMapping("/{genre}")

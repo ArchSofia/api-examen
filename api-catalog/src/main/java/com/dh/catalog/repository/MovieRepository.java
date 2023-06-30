@@ -1,8 +1,10 @@
 package com.dh.catalog.repository;
 
+import com.dh.catalog.client.MovieServiceClient;
 import com.dh.catalog.model.movie.Movie;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

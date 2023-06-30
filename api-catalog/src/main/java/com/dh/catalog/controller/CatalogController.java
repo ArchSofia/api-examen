@@ -1,13 +1,12 @@
 package com.dh.catalog.controller;
 
 import com.dh.catalog.client.MovieServiceClient;
-
 import com.dh.catalog.client.SerieServiceClient;
+import com.dh.catalog.model.movie.Movie;
+import com.dh.catalog.service.CatalogService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,13 +15,9 @@ import java.util.List;
 @RequestMapping("/api/v1/catalog")
 public class CatalogController {
 
-	private final MovieServiceClient movieServiceClient;
-	private final SerieServiceClient serieServiceClient;
-
-	public CatalogController(MovieServiceClient movieServiceClient, SerieServiceClient serieServiceClient) {
-
-		this.movieServiceClient = movieServiceClient;
-		this.serieServiceClient = serieServiceClient;
+	private final CatalogService catalogService;
+	public CatalogController(CatalogService catalogService) {
+		this.catalogService = catalogService;
 	}
 
 /*	@GetMapping("/{genre}")
@@ -31,16 +26,24 @@ public class CatalogController {
 				movieServiceClient.getMovieByGenre(genre)
 				serieServiceClient.getSerieByGenre(genre));
 	}*/
-
 	@GetMapping("/{genre}")
 	ResponseEntity<List<Object>> getGenre(@PathVariable String genre) {
 		List<Object> genreItems = new ArrayList<>();
-
-		genreItems.addAll(movieServiceClient.getMovieByGenre(genre));
-		genreItems.addAll(serieServiceClient.getSerieByGenre(genre));
+		genreItems.addAll(catalogService.getMovieByGenre(genre));
+		genreItems.addAll(catalogService.getSerieByGenre(genre));
 
 		return ResponseEntity.ok(genreItems);
 	}
 
-	//TODO: ACA VAS A HACER DOS POST, UNO DE PELICULAS YU OPTRO DE SERIES! usando el feign que armaste
+	@PostMapping("/saveMovie")
+	@ResponseStatus(code = HttpStatus.CREATED)
+	public MovieServiceClient.MovieDto saveMovie(@RequestBody MovieServiceClient.MovieDto movieDto) {
+		return catalogService.createMovie(movieDto);
+	}
+
+	@PostMapping("/saveSeries")
+	@ResponseStatus(code = HttpStatus.CREATED)
+	public SerieServiceClient.Serie saveSeries(@RequestBody SerieServiceClient.Serie serie) {
+		return catalogService.createSeries(serie);
+	}
 }
